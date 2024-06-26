@@ -162,3 +162,5 @@ cython_debug/
 #.idea/
 requirements-dev.lock
 requirements.lock
+
+pyproject.toml
