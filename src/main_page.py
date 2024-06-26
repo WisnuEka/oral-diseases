@@ -13,7 +13,6 @@ with st.columns(3)[1]:
     st.image(path.join(script_dir, "assets/logo.png"), width=250)
     st.write("## Tag Liner")
 
-st.sidebar.success("Select a demo above.")
 
 st.markdown(
     """
