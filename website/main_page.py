@@ -25,3 +25,5 @@ st.markdown(
     culpa qui officia deserunt mollit anim id est laborum.
 """
 )
+with st.columns(3)[1]:
+    st.page_link("pages/upload_page.py", label="Upload Image", use_container_width=True)
