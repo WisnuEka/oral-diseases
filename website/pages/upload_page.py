@@ -1,5 +1,6 @@
 import streamlit as st
 import time
+import requests
 from os import path
 from PIL import Image, ImageDraw
 
@@ -15,7 +16,7 @@ PREDICTION_KEY = "ac148f9128e44654b7c102171c0cbd4c"
 ENDPOINT = "https://skilvulcustomvision-prediction.cognitiveservices.azure.com"
 PROJECT_ID = "d07526a4-69e5-4031-8eaf-2ac073653d5f"
 PUBLISHED_NAME = "Iteration1"
-
+IMGUR_CLIENT_ID = "YOUR_IMGUR_CLIENT_ID"
 
 prediction_credentials = ApiKeyCredentials(
     in_headers={"Prediction-key": PREDICTION_KEY}
@@ -45,17 +46,16 @@ with tab2:
 
 # submit input foto/gambar
 if st.button("Submit"):
-    submitted_image.seek(0)
-    image_file = Image.open(submitted_image)
-    bytes_image = bytes(image_file.tobytes())
-    IMAGE_HEIGHT = image_file.height
-    IMAGE_WIDTH = image_file.width
-
-    # Create a drawing context
-    draw = ImageDraw.Draw(image_file)
-
     st.session_state.name = "Submit"
     with st.spinner("Processing..."):
+        image_file = Image.open(submitted_image)
+        bytes_image = submitted_image.getbuffer()
+        IMAGE_HEIGHT = image_file.height
+        IMAGE_WIDTH = image_file.width
+
+        # Create a drawing context
+        draw = ImageDraw.Draw(image_file)
+
         result = predictor.detect_image(
             project_id=PROJECT_ID,
             published_name=PUBLISHED_NAME,
@@ -66,7 +66,7 @@ if st.button("Submit"):
             if prediction.probability < 0.75:
                 pass
             else:
-                print(
+                st.write(
                     "\t"
                     + prediction.tag_name
                     + ": {0:.2f}% bbox.left = {1:.2f}, bbox.top = {2:.2f}, bbox.width = {3:.2f}, bbox.height = {4:.2f}".format(
