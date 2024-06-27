@@ -9,7 +9,7 @@ st.set_page_config(
 )
 
 with st.columns(3)[1]:
-    st.write("# SENYUMMU 😊")
+    st.write("## SENYUMMU")
     st.image(path.join(script_dir, "assets/logo.png"), width=250)
     st.write("## Tag Liner")
 
