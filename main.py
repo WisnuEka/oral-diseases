@@ -1,75 +1,69 @@
-import subprocess
-import os
-import zipfile
-from dotenv import load_dotenv
-
-from azure.cognitiveservices.vision.customvision.training import CustomVisionTrainingClient
-from azure.cognitiveservices.vision.customvision.training.models import CustomVisionErrorException, ImageFileCreateBatch
+from os import path
+from PIL import Image, ImageDraw
+from azure.cognitiveservices.vision.customvision.prediction import (
+    CustomVisionPredictionClient,
+)
 from msrest.authentication import ApiKeyCredentials
 
-from oral.labels import Labels
+dir = path.dirname(path.abspath(__file__))
+
+# Replace with your values
+PREDICTION_KEY = "ac148f9128e44654b7c102171c0cbd4c"
+ENDPOINT = "https://skilvulcustomvision-prediction.cognitiveservices.azure.com"
+PROJECT_ID = "d07526a4-69e5-4031-8eaf-2ac073653d5f"
+PUBLISHED_NAME = "Iteration1"
+
+with open(path.join(dir, "test_caries.jpeg"), "rb") as image:
+    data = image.read()
 
 
-load_dotenv()
-
-ENDPOINT = os.getenv("VISION_TRAINING_ENDPOINT")
-TRAINING_KEY = os.getenv("VISION_TRAINING_KEY")
-DOMAIN_ID = os.getenv("DOMAIN_ID")
-PROJECT_ID = os.getenv("PROJECT_ID")
+prediction_credentials = ApiKeyCredentials(
+    in_headers={"Prediction-key": PREDICTION_KEY}
+)
+predictor = CustomVisionPredictionClient(ENDPOINT, prediction_credentials)
 
 
-def download_dataset():
-    command = "kaggle datasets download -d salmansajid05/oral-diseases"
-    process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
-    process.wait()
-    print("Command executed, return code:", process.returncode)
+result = predictor.detect_image(
+    project_id=PROJECT_ID,
+    published_name=PUBLISHED_NAME,
+    image_data=data,
+)
+
+image_file = Image.open(path.join(dir, "test_caries.jpeg"))
+IMAGE_HEIGHT = image_file.height
+IMAGE_WIDTH = image_file.width
+
+# Create a drawing context
+draw = ImageDraw.Draw(image_file)
 
 
-def extract_dataset(data_dir: str):
-    with zipfile.ZipFile("oral-diseases.zip", "r") as zip_ref:
-        zip_ref.extractall(data_dir)
-    os.remove(os.path.join('data', 'Caries_Gingivitus_ToothDiscoloration_Ulcer-yolo_annotated-Dataset',
-                           'Caries_Gingivitus_ToothDiscoloration_Ulcer-yolo_annotated-Dataset', 'Data', 'labels',
-                           'train', 'labels.txt'))
+for prediction in result.predictions:
+    if prediction.probability < 0.75:
+        pass
+    else:
+        print(
+            "\t"
+            + prediction.tag_name
+            + ": {0:.2f}% bbox.left = {1:.2f}, bbox.top = {2:.2f}, bbox.width = {3:.2f}, bbox.height = {4:.2f}".format(
+                prediction.probability,
+                prediction.bounding_box.left,
+                prediction.bounding_box.top,
+                prediction.bounding_box.width,
+                prediction.bounding_box.height,
+            )
+        )
+        draw.rectangle(
+            xy=[
+                int(IMAGE_WIDTH * prediction.bounding_box.left),
+                int(IMAGE_HEIGHT * prediction.bounding_box.top),
+                int(IMAGE_WIDTH * prediction.bounding_box.left)
+                + int(IMAGE_WIDTH * prediction.bounding_box.width),
+                int(IMAGE_HEIGHT * prediction.bounding_box.top)
+                + int(IMAGE_HEIGHT * prediction.bounding_box.height),
+            ],
+            outline="red",
+            width=1,
+        )
 
 
-if __name__ == "__main__":
-    if not os.path.exists("oral-diseases.zip"):
-        download_dataset()
-        extract_dataset(os.getenv("DATA_DIR"))
-
-    print("Dataset downloaded and extracted")
-
-    credentials = ApiKeyCredentials(in_headers={"Training-key": TRAINING_KEY})
-    trainer = CustomVisionTrainingClient(ENDPOINT, credentials)
-
-    # tagging images
-    labels = Labels()
-
-    tags = []
-    for class_name in labels.choosen_labels:
-        try:
-            tags.append(trainer.create_tag(PROJECT_ID, class_name))
-        except CustomVisionErrorException:
-            print(f"Tag {class_name} already exists")
-            continue
-
-    if not tags:
-        print("Tags already exist")
-        tags = trainer.get_tags(PROJECT_ID)
-
-    tag_name_to_id = {tag.name: tag.id for tag in tags}
-
-    labels.tag_images(tags=tag_name_to_id)
-
-    # upload images
-    # slice the list into batches of size 64
-    for i in range(0, len(labels.tagged_images_with_regions), 64):
-        print(i)
-        batch = labels.tagged_images_with_regions[i:i + 64]
-        upload_result = trainer.create_images_from_files(PROJECT_ID, ImageFileCreateBatch(images=batch))
-        if not upload_result.is_batch_successful:
-            print("Image batch upload failed")
-            for image in upload_result.images:
-                print("Image status: ", image.status)
-            exit(-1)
+image_file.show()
