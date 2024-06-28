@@ -4,8 +4,11 @@ import streamlit as st
 
 script_dir = path.dirname(path.abspath(__file__))
 ph_gambar = path.join(script_dir, "../assets/logo.png")
+
+st.set_page_config(page_title="User Guide", page_icon="😊")
+
 # Title
-st.title("Panduan Penggunaan App Senyummu")
+st.markdown("<h1 style='text-align: center;'>PANDUAN PENGGUNAAN</h1>", unsafe_allow_html=True)
 
 # Disini ilustrasi gambar penggunaan
 col1, col2, col3, col4, col5 = st.columns(5)
