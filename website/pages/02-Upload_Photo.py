@@ -17,7 +17,14 @@ predictor = CustomVisionPredictionClient(ENDPOINT, prediction_credentials)
 
 st.set_page_config(page_title="Upload Photo", page_icon="😊")
 
-st.markdown("<h1 style='text-align: center;'>UPLOAD PHOTO</h1>", unsafe_allow_html=True)
+st.markdown(
+    """
+    <h1 style='text-align: center;'>
+    UPLOAD PHOTO
+    </h1>
+    """,
+    unsafe_allow_html=True,
+)
 
 
 UploadPhoto, TakePhoto = st.tabs(["**Upload Photo**", "**Take Photo**"])

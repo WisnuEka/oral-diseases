@@ -59,12 +59,12 @@ team_ai = {
         "https://www.linkedin.com/in/samfareez/",
     ],
     "Aisyah Amalia Al Fitri": [
-        "../assets/profile2.jpeg",
+        "../assets/amalia.jpg",
         "arsyah291200@gmail.com",
         "https://www.linkedin.com/in/aisyahamaliaalfitri/",
     ],
     "Irvan Achmad Ashari": [
-        "../assets/profile2.jpeg",
+        "../assets/irvan.jpg",
         "irvanachmadashari@gmail.com",
         "https://www.linkedin.com/in/maragopan",
     ],
@@ -72,7 +72,7 @@ team_ai = {
 
 team_data = {
     "Adi Kurniawan": [
-        "../assets/profile2.jpeg",
+        "../assets/adi.jpg",
         "adikurniawan917@gmail.com",
         "https://www.linkedin.com/in/adi-kurniawan-b65a2579/",
     ],

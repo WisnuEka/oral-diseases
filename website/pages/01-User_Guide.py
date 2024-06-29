@@ -2,42 +2,57 @@ from os import path
 
 import streamlit as st
 
-script_dir = path.dirname(path.abspath(__file__))
-ph_gambar = path.join(script_dir, "../assets/logo.png")
-
+dir = path.dirname(path.abspath(__file__))
+asset_dir = path.join(dir, "../assets/")
 st.set_page_config(page_title="User Guide", page_icon="😊")
 
 # Title
-st.markdown("<h1 style='text-align: center;'>PANDUAN PENGGUNAAN</h1>", unsafe_allow_html=True)
-
-# Disini ilustrasi gambar penggunaan
-col1, col2, col3, col4, col5 = st.columns(5)
-with col1:
-    col1.image(ph_gambar, width=150)
-    col1.write("ilustrasi 1")
-with col2:
-    col2.image(ph_gambar, width=150)
-    col2.write("ilustrasi 2")
-with col3:
-    col3.image(ph_gambar, width=150)
-    col3.write("ilustrasi 3")
-with col4:
-    col4.image(ph_gambar, width=150)
-    col4.write("ilustrasi 4")
-with col5:
-    col5.image(ph_gambar, width=150)
-    col5.write("Ilustrasi 5")
-
-# Step by step text cara penggunaan
 st.markdown(
     """
-    Step by step / Langkah / Syarat / Lainnya :
-    1. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod    
-    2. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolo   
-    3. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolo   
-    4. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolo   
-    5. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolo
-    """
+    <h1 style='text-align: center;'>
+    PANDUAN PENGGUNAAN
+    </h1>
+    """,
+    unsafe_allow_html=True,
 )
 
-st.caption("_Catatan Penting :...._")
+st.markdown(" ")
+
+step_data = (
+    (
+        "step_1",
+        "Pastikan Cahaya Cukup",
+        """Pastikan ruangan atau lokasi pengambilan foto memiliki pencahayaan yang cukup untuk
+        menghasilkan foto yang jelas.""",
+    ),
+    (
+        "step_2",
+        "Minta Bantuan Orang Lain",
+        """Usahakan pengambilan foto dilakukan dengan bantuan orang lain agar hasil foto
+        lebih baik dan sesuai.""",
+    ),
+    (
+        "step_3",
+        "Sesuaikan dengan Contoh Gambar",
+        """Usahakan hasil foto serupa dengan contoh gambar yang telah disediakan.""",
+    ),
+    ("step_4", "Klik Menu Upload Photo", """Buka halaman pengunggahan dengan mengklik menu "Upload Page"."""),
+    ("step_5", "Klik Menu Upload Gambar", """Setelah berada di halaman pengunggahan, klik menu Upload Photo."""),
+    ("step_6", "Klik Browse Files", """Untuk memilih gambar yang akan diunggah, klik tombol Browse Files."""),
+    ("step_7", "Pilih Gambar", """Cari dan pilih gambar yang sudah diambil sesuai petunjuk."""),
+    (
+        "step_8",
+        "Klik Tombol Submit",
+        """Setelah memilih gambar, klik tombol Submit untuk mengunggah gambar tersebut.""",
+    ),
+)
+
+# Step by step text cara penggunaan
+for step in step_data:
+    columns = st.columns((0.2, 0.5), vertical_alignment="center", gap="small")
+    with columns[0]:
+        st.image(path.join(asset_dir, f"{step[0]}.png"))
+    with columns[1]:
+        st.subheader(f"**{step[1]}**")
+        st.success(f"_{step[2]}_", icon=":material/info:")
+    st.markdown("---")

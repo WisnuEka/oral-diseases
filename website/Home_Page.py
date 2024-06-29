@@ -10,7 +10,8 @@ st.markdown("<h1 style='text-align: center;'>SENYUMMU</h1>", unsafe_allow_html=T
 
 with st.columns(3)[1]:
     st.image(path.join(script_dir, "assets/logo.png"), width=200)
-    st.write("## Senyummu: Kenali Masalah Mulutmu, Jaga Senyummu")
+
+st.write("## Senyummu: Kenali Masalah Mulutmu, Jaga Senyummu")
 
 
 st.markdown(
