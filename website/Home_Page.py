@@ -10,7 +10,7 @@ st.markdown("<h1 style='text-align: center;'>SENYUMMU</h1>", unsafe_allow_html=T
 
 with st.columns(3)[1]:
     st.image(path.join(script_dir, "assets/logo.png"), width=200)
-    st.write("## Tag Liner")
+    st.write("## Senyummu: Kenali Masalah Mulutmu, Jaga Senyummu")
 
 
 st.markdown(
@@ -28,5 +28,4 @@ st.markdown(
 left, middle, right = st.columns(3)
 
 with middle:
-    st.button(label="User Guide")
     st.page_link("pages/01-User_Guide.py", label="User Guide")
