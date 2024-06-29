@@ -11,33 +11,36 @@ st.set_page_config(page_title="User Guide", page_icon="😊")
 st.markdown("<h1 style='text-align: center;'>PANDUAN PENGGUNAAN</h1>", unsafe_allow_html=True)
 
 # Disini ilustrasi gambar penggunaan
-col1, col2, col3, col4, col5 = st.columns(5)
-with col1:
-    col1.image(ph_gambar, width=150)
-    col1.write("ilustrasi 1")
-with col2:
-    col2.image(ph_gambar, width=150)
-    col2.write("ilustrasi 2")
-with col3:
-    col3.image(ph_gambar, width=150)
-    col3.write("ilustrasi 3")
-with col4:
-    col4.image(ph_gambar, width=150)
-    col4.write("ilustrasi 4")
-with col5:
-    col5.image(ph_gambar, width=150)
-    col5.write("Ilustrasi 5")
+style = "<style>p {text-align: center;}</style>"
+with st.columns([3,8,3])[1]:
+    st.image(path.join(script_dir, "../assets/guide_images/1.png"))
+    st.markdown(style+"<p>Pastikan cahaya cukup untuk mengambil foto dengan jelas</p>", unsafe_allow_html=True)
+    
+with st.columns([3,8,3])[1]:
+    st.image(path.join(script_dir, "../assets/guide_images/2.png"))
+    st.markdown(style+"<p>Usahakan pengambilan foto dibantu oleh orang lain</p>", unsafe_allow_html=True)
+    
+with st.columns([3,8,3])[1]:
+    st.image(path.join(script_dir, "../assets/guide_images/3.png"))
+    st.markdown(style+"<p>Usahakan hasil foto serupa dengan contoh gambar</p>", unsafe_allow_html=True)
+
+with st.columns([3,8,3])[1]:
+    st.image(path.join(script_dir, "../assets/guide_images/4.png"))
+    st.markdown(style+"<p>Menuju ke Halaman Upload Page</p>", unsafe_allow_html=True)
+    
+with st.columns([3,8,3])[1]:
+    st.image(path.join(script_dir, "../assets/guide_images/5.png"))
+    st.markdown(style+"<p>Pilih Unggah Gambar atau Ambil Foto (lakukan salah satu)</p>", unsafe_allow_html=True)
+    
+with st.columns([3,8,3])[1]:
+    st.image(path.join(script_dir, "../assets/guide_images/8.png"))
+    st.markdown(style+"<p>Klik Tombol Submit untuk memulai pengecekan</p>", unsafe_allow_html=True)
+    
+with st.columns([3,8,3])[1]:
+    st.image(path.join(script_dir, "../assets/guide_images/7.png"))
+    st.markdown(style+"<p>Pengecekan Selesai, Menampilkan Report </p>", unsafe_allow_html=True)
 
 # Step by step text cara penggunaan
-st.markdown(
-    """
-    Step by step / Langkah / Syarat / Lainnya :
-    1. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod    
-    2. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolo   
-    3. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolo   
-    4. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolo   
-    5. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolo
-    """
-)
-
-st.caption("_Catatan Penting :...._")
+st.caption("_Catatan Penting : .... just in case_")
+with st.columns([4,6,4])[1]:
+    st.page_link("pages/02-Upload_Photo.py", label=" -> Cek Kesehatan Gigi dan Mulut kamu disini <-")
