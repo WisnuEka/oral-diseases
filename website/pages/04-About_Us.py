@@ -11,7 +11,7 @@ def show_member(member: dict):
         with columns[0]:
             st.image(path.join(dir, member.get(person)[0]))
         with columns[1]:
-            st.write(person)
+            st.subheader(person)
             for i, info in enumerate(member.get(person)):
                 if i == 0:
                     pass
@@ -44,27 +44,27 @@ st.markdown("### OUR TEAM")
 
 team_ai = {
     "Gunung Pambudi Wibisono": [
-        "../assets/gunung.jpg",
+        "../assets/gunung.png",
         "gunungpambudiw@gmail.com",
         "https://www.linkedin.com/in/gunungpw/",
     ],
     "Wisnu Eka Saputra. S": [
-        "../assets/wisnu.jpg",
+        "../assets/wisnu.png",
         "wisnuekasaputra@hotmail.com",
         "https://id.linkedin.com/in/wisnuekasaputra",
     ],
     "Vauwez Sam El Fareez": [
-        "../assets/vauwez.jpg",
+        "../assets/vauwez.png",
         "vsefareez@outlook.com",
         "https://www.linkedin.com/in/samfareez/",
     ],
     "Aisyah Amalia Al Fitri": [
-        "../assets/amalia.jpg",
+        "../assets/amalia.png",
         "arsyah291200@gmail.com",
         "https://www.linkedin.com/in/aisyahamaliaalfitri/",
     ],
     "Irvan Achmad Ashari": [
-        "../assets/irvan.jpg",
+        "../assets/irfan.png",
         "irvanachmadashari@gmail.com",
         "https://www.linkedin.com/in/maragopan",
     ],
@@ -72,17 +72,17 @@ team_ai = {
 
 team_data = {
     "Adi Kurniawan": [
-        "../assets/adi.jpg",
+        "../assets/adi.png",
         "adikurniawan917@gmail.com",
         "https://www.linkedin.com/in/adi-kurniawan-b65a2579/",
     ],
     "Gishelawati": [
-        "../assets/ghiselawati.jpg",
+        "../assets/ghiselawati.png",
         "gishelawati01@gmail.com",
         "https://www.linkedin.com/in/gishelawati-129982201/",
     ],
     "Nibras Alfaruqiyah": [
-        "../assets/nibras.jpg",
+        "../assets/nibras.png",
         "alfaruqiyah.nibras@gmail.com",
         "https://www.linkedin.com/in/nibras-alfaruqiyah-web-developer-data/",
     ],
