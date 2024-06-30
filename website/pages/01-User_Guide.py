@@ -9,9 +9,11 @@ st.set_page_config(page_title="User Guide", page_icon="😊")
 # Title
 st.markdown(
     """
-    <h1 style='text-align: center;'>
+    <p style='text-align: center; font-size: 1.75rem'>
+    <strong>
     PANDUAN PENGGUNAAN
-    </h1>
+    </strong>
+    </p>
     """,
     unsafe_allow_html=True,
 )
@@ -36,14 +38,18 @@ step_data = (
         "Sesuaikan dengan Contoh Gambar",
         """Usahakan hasil foto serupa dengan contoh gambar yang telah disediakan.""",
     ),
-    ("step_4", "Klik Menu Upload Photo", """Buka halaman pengunggahan dengan mengklik menu "Upload Page"."""),
-    ("step_5", "Klik Menu Upload Gambar", """Setelah berada di halaman pengunggahan, klik menu Upload Photo."""),
-    ("step_6", "Klik Browse Files", """Untuk memilih gambar yang akan diunggah, klik tombol Browse Files."""),
-    ("step_7", "Pilih Gambar", """Cari dan pilih gambar yang sudah diambil sesuai petunjuk."""),
+    ("step_4", "Klik Menu Upload Photo", """Buka halaman pengunggahan dengan mengklik menu **Upload Photo**."""),
+    ("step_5", "Klik Tab Upload Photo", """Setelah berada di halaman pengunggahan, klik Tab **Upload Photo**."""),
+    (
+        "step_6",
+        "Klik Tombol Browse Files",
+        """Untuk memilih gambar yang akan diunggah, klik tombol **Browse Files**.""",
+    ),
+    ("step_7", "Pilih Gambar dari Gallery", """Cari dan pilih gambar yang sudah diambil sesuai petunjuk."""),
     (
         "step_8",
         "Klik Tombol Submit",
-        """Setelah memilih gambar, klik tombol Submit untuk mengunggah gambar tersebut.""",
+        """Setelah memilih gambar, klik tombol **Submit** untuk mengunggah gambar tersebut.""",
     ),
 )
 
@@ -55,4 +61,11 @@ for step in step_data:
     with columns[1]:
         st.subheader(f"**{step[1]}**")
         st.success(f"_{step[2]}_", icon=":material/info:")
-    st.markdown("---")
+    st.divider()
+
+with st.container(border=True):
+    st.page_link(
+        "pages/02-Upload_Photo.py",
+        label=":green-background[Upload Photo]",
+        icon=":material/chevron_right:",
+    )

@@ -11,21 +11,22 @@ def show_member(member: dict):
         with columns[0]:
             st.image(path.join(dir, member.get(person)[0]))
         with columns[1]:
-            st.subheader(person)
-            for i, info in enumerate(member.get(person)):
-                if i == 0:
-                    pass
-                elif i == 2:
-                    st.page_link(info, label="Linkedin")
-                else:
-                    st.write(info)
+            with st.container(border=True):
+                st.subheader(person)
+                for i, info in enumerate(member.get(person)):
+                    if i == 0:
+                        pass
+                    elif i == 2:
+                        st.page_link(info, label="Linkedin")
+                    else:
+                        st.write(info)
 
 
 st.set_page_config(page_title="About Us", page_icon="😊")
 
-st.markdown("<h1 style='text-align: center;'>ABOUT US</h1>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; font-size: 3rem;'>ABOUT US</p>", unsafe_allow_html=True)
 
-st.markdown("### OUR MISSION")
+st.markdown("# OUR MISSION")
 
 st.markdown(
     """
@@ -40,7 +41,8 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-st.markdown("### OUR TEAM")
+st.divider()
+st.markdown("# OUR TEAM")
 
 team_ai = {
     "Gunung Pambudi Wibisono": [
