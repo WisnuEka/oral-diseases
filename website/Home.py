@@ -5,7 +5,7 @@ script_dir = path.dirname(path.abspath(__file__))
 
 st.set_page_config(page_title="Senyummu", page_icon="😊")
 
-st.image(path.join(script_dir, "assets/hero_banner.jpg"))
+st.image(path.join(script_dir, "assets/hero_banner_v2.png"))
 
 st.markdown("")
 st.divider()
