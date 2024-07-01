@@ -44,9 +44,11 @@ st.set_page_config(page_title="Upload Photo", page_icon="😊")
 
 st.markdown(
     """
-    <h1 style='text-align: center;'>
+    <p style='text-align: center; font-size: 2.5rem;'>
+    <strong>
     UPLOAD PHOTO
-    </h1>
+    </strong>
+    </p>
     """,
     unsafe_allow_html=True,
 )

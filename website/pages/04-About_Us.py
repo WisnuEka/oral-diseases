@@ -24,7 +24,16 @@ def show_member(member: dict):
 
 st.set_page_config(page_title="About Us", page_icon="😊")
 
-st.markdown("<p style='text-align: center; font-size: 3rem;'>ABOUT US</p>", unsafe_allow_html=True)
+st.markdown(
+    """
+    <p style='text-align: center; font-size: 2.5rem;'>
+    <strong>
+    ABOUT US
+    </strong>
+    </p>
+    """,
+    unsafe_allow_html=True,
+)
 
 st.markdown("# OUR MISSION")
 

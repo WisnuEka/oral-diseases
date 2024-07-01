@@ -9,7 +9,7 @@ st.set_page_config(page_title="User Guide", page_icon="😊")
 # Title
 st.markdown(
     """
-    <p style='text-align: center; font-size: 1.75rem'>
+    <p style='text-align: center; font-size: 2.5rem'>
     <strong>
     PANDUAN PENGGUNAAN
     </strong>
