@@ -89,7 +89,7 @@ team_data = {
         "https://www.linkedin.com/in/nibras-alfaruqiyah-web-developer-data/",
     ],
     "Bagus Akhlaq": [
-        "../assets/profile2.jpeg",
+        "../assets/bagus.png",
         "bagusakhlaq@gmail.com",
         "https://www.linkedin.com/in/bagus-akhlaq",
     ],
