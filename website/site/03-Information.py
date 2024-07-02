@@ -16,12 +16,25 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
+st.subheader("Infografis")
 with open(path.join(asset_dir, "information.pdf"), mode="rb") as d_file:
     st.download_button(
-        label="Download Information PDF",
+        label="Download Infografis PDF",
         data=d_file,
         file_name="information.pdf",
         mime="application/pdf",
     )
 
 st.image(path.join(asset_dir, "information.png"), use_column_width=True)
+
+
+st.subheader("Poster")
+with open(path.join(asset_dir, "poster_01.pdf"), mode="rb") as d_file:
+    st.download_button(
+        label="Download Poster PDF",
+        data=d_file,
+        file_name="poster_01.pdf",
+        mime="application/pdf",
+    )
+
+st.image(path.join(asset_dir, "poster_01.jpg"), use_column_width=True)

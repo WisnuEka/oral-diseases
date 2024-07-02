@@ -91,7 +91,7 @@ with TakePhoto:
         submitted_image = uploaded_image
 
 with st.expander("Setting", icon=":material/arrow_forward_ios:"):
-    prob = st.slider("_Confidence Level_", min_value=0, max_value=100, step=5, value=(50, 100))
+    prob = st.slider("_Confidence Level_", min_value=0, max_value=100, step=5, value=(80, 100))
 
     col = st.columns(2, gap="medium")
     with col[0]:
