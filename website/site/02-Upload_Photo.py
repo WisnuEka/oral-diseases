@@ -90,26 +90,27 @@ with TakePhoto:
         st.image(uploaded_image, use_column_width=True)
         submitted_image = uploaded_image
 
-prob = st.slider("_Confidence Level_", min_value=0, max_value=100, step=5, value=(50, 100))
+with st.expander("Setting", icon=":material/arrow_forward_ios:"):
+    prob = st.slider("_Confidence Level_", min_value=0, max_value=100, step=5, value=(50, 100))
 
-col = st.columns(2, gap="medium")
-with col[0]:
-    detect_options = st.multiselect(
-        "_Select Diseases_",
-        ["Caries", "Ulcer", "Gingivitis", "Tooth Discoloration"],
-        ["Caries", "Ulcer", "Gingivitis", "Tooth Discoloration"],
-    )
-with col[1]:
-    report_mode = st.radio(
-        "_Choose Report Detail_",
-        ["Normal", "Annotation", "Raw Data", "All"],
-        captions=[
-            "Report berisi semua informasi penting",
-            "Report hanya berisi _marked_ foto",
-            "Report hanya berisi detail _bounding box_",
-            "Report berisi semua informasi",
-        ],
-    )
+    col = st.columns(2, gap="medium")
+    with col[0]:
+        detect_options = st.multiselect(
+            "_Select Diseases_",
+            ["Caries", "Ulcer", "Gingivitis", "Tooth Discoloration"],
+            ["Caries", "Ulcer", "Gingivitis", "Tooth Discoloration"],
+        )
+    with col[1]:
+        report_mode = st.radio(
+            "_Choose Report Detail_",
+            ["Normal", "Annotation", "Raw Data", "All"],
+            captions=[
+                "Report berisi semua informasi penting",
+                "Report hanya berisi _marked_ foto",
+                "Report hanya berisi detail _bounding box_",
+                "Report berisi semua informasi",
+            ],
+        )
 
 # submit input foto/gambar
 if st.button("Submit", type="primary"):
