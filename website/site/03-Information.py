@@ -16,5 +16,12 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-for i in range(1, 9):
-    st.image(path.join(asset_dir, f"info_0{i}.png"), use_column_width=True)
+with open(path.join(asset_dir, "information.pdf"), mode="rb") as d_file:
+    st.download_button(
+        label="Download Information PDF",
+        data=d_file,
+        file_name="information.pdf",
+        mime="application/pdf",
+    )
+
+st.image(path.join(asset_dir, "information.png"), use_column_width=True)

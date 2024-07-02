@@ -53,6 +53,13 @@ def mark(tag_name, width, height, b_left, b_top, b_width, b_height):
     )
 
 
+def expand_exif(data):
+    result = {}
+    for k, v in data.items():
+        result[k] = v
+    return result
+
+
 st.set_page_config(page_title="Upload Photo", page_icon="😊")
 
 st.markdown(
@@ -129,7 +136,6 @@ if st.button("Submit", type="primary"):
             find = []
             tags = []
             for prediction in result.predictions:
-                find.append(f"{prediction.tag_name}, {prediction.probability * 100:.2f}%")
                 if (
                     prediction.probability >= prob[0] / 100
                     and prediction.probability <= prob[1] / 100
@@ -137,6 +143,14 @@ if st.button("Submit", type="primary"):
                 ):
                     if prediction.tag_name not in tags:
                         tags.append(prediction.tag_name)
+                    find.append({
+                        "tag_name": prediction.tag_name,
+                        "probalility": prediction.probability,
+                        "top": prediction.bounding_box.top,
+                        "left": prediction.bounding_box.left,
+                        "width": prediction.bounding_box.width,
+                        "height": prediction.bounding_box.height,
+                    })
                     mark(
                         tag_name=prediction.tag_name,
                         width=IMAGE_WIDTH,
@@ -165,8 +179,17 @@ if st.button("Submit", type="primary"):
                         st.caption(f"{el}")
             if report_mode in ["Raw Data", "All"]:
                 with st.expander("Raw Data", icon=":material/info:"):
-                    st.write(find)
+                    st.subheader("Image Metadata")
+                    st.write({
+                        "image_width": IMAGE_WIDTH,
+                        "image_height": IMAGE_HEIGHT,
+                        "image_format": image_file.format,
+                        "image_info": expand_exif(image_file.info),
+                    })
+                    st.subheader("Detected Disease")
                     st.write(tags)
+                    st.subheader("Raw Response")
+                    st.write(find)
 
             if report_mode in ["Normal", "All"]:
                 st.header("Report")
@@ -180,7 +203,7 @@ if st.button("Submit", type="primary"):
                                 file_name="report_caries.pdf",
                                 mime="application/pdf",
                             )
-
+                        st.image(join(dir, "../assets/r_caries.png"))
                         with open(join(dir, "../assets/caries.md"), mode="r") as docs:
                             st.markdown(docs.read())
                 if "Gingivitis" in tags:
@@ -193,6 +216,7 @@ if st.button("Submit", type="primary"):
                                 file_name="report_gingivitis.pdf",
                                 mime="application/pdf",
                             )
+                        st.image(join(dir, "../assets/r_gingivitis.png"))
                         with open(join(dir, "../assets/gingivitis.md"), mode="r") as docs:
                             st.markdown(docs.read())
                 if "Ulcer" in tags:
@@ -205,6 +229,7 @@ if st.button("Submit", type="primary"):
                                 file_name="report_ulcer.pdf",
                                 mime="application/pdf",
                             )
+                        st.image(join(dir, "../assets/r_ulcer.png"))
                         with open(join(dir, "../assets/ulcer.md"), mode="r") as docs:
                             st.markdown(docs.read())
                 if "Tooth Discoloration" in tags:
