@@ -54,13 +54,19 @@ step_data = (
 )
 
 # Step by step text cara penggunaan
-for step in step_data:
+for i, step in enumerate(step_data):
     columns = st.columns((0.2, 0.5), vertical_alignment="center", gap="small")
     with columns[0]:
         st.image(path.join(asset_dir, f"{step[0]}.png"))
     with columns[1]:
         st.subheader(f"**{step[1]}**")
         st.success(f"_{step[2]}_", icon=":material/info:")
+    if i == 6:
+        with st.expander(label="Contoh Gambar", icon=":material/chevron_right:"):
+            cl = st.columns(4)
+            for i, c in enumerate(cl, start=1):
+                st.image(path.join(asset_dir, f"test_0{i}.jpg"), use_column_width=True)
+
     st.divider()
 
 with st.container(border=True):

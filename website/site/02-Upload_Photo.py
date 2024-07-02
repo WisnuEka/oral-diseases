@@ -21,6 +21,15 @@ predictor = CustomVisionPredictionClient(ENDPOINT, prediction_credentials)
 
 def mark(tag_name, width, height, b_left, b_top, b_width, b_height):
     color = None
+    line_width = 2
+
+    if width <= 400 or height <= 300:
+        line_width = 1
+    elif 401 <= width <= 800 or 301 <= height <= 600:
+        line_width = 2
+    else:
+        line_width = 3
+
     if tag_name == "Caries":
         color = "red"
     elif tag_name == "Gingivitis":
@@ -31,6 +40,7 @@ def mark(tag_name, width, height, b_left, b_top, b_width, b_height):
         color = "yellow"
     else:
         color = "black"
+
     draw.rectangle(
         xy=[
             int(width * b_left),
@@ -39,7 +49,7 @@ def mark(tag_name, width, height, b_left, b_top, b_width, b_height):
             int(height * b_top) + int(height * b_height),
         ],
         outline=color,
-        width=2,
+        width=line_width,
     )
 
 
@@ -163,21 +173,50 @@ if st.button("Submit", type="primary"):
                 if "Caries" in tags:
                     with st.expander("Caries Report", icon=":material/arrow_forward_ios:"):
                         st.header("Caries")
+                        with open(join(dir, "../assets/report_caries.pdf"), mode="rb") as d_file:
+                            st.download_button(
+                                label="Download Caries Report PDF",
+                                data=d_file,
+                                file_name="report_caries.pdf",
+                                mime="application/pdf",
+                            )
+
                         with open(join(dir, "../assets/caries.md"), mode="r") as docs:
                             st.markdown(docs.read())
                 if "Gingivitis" in tags:
                     with st.expander("Gingivitis Report", icon=":material/arrow_forward_ios:"):
                         st.header("Gingivitis")
+                        with open(join(dir, "../assets/report_gingivitis.pdf"), mode="rb") as d_file:
+                            st.download_button(
+                                label="Download Gingivitis Report PDF",
+                                data=d_file,
+                                file_name="report_gingivitis.pdf",
+                                mime="application/pdf",
+                            )
                         with open(join(dir, "../assets/gingivitis.md"), mode="r") as docs:
                             st.markdown(docs.read())
                 if "Ulcer" in tags:
                     with st.expander("Ulcer Report", icon=":material/arrow_forward_ios:"):
                         st.header("Ulcer")
+                        with open(join(dir, "../assets/report_ulcer.pdf"), mode="rb") as d_file:
+                            st.download_button(
+                                label="Download Ulcer Report PDF",
+                                data=d_file,
+                                file_name="report_ulcer.pdf",
+                                mime="application/pdf",
+                            )
                         with open(join(dir, "../assets/ulcer.md"), mode="r") as docs:
                             st.markdown(docs.read())
                 if "Tooth Discoloration" in tags:
                     with st.expander("Tooth Discoloration Report", icon=":material/arrow_forward_ios:"):
                         st.header("Tooth Discoloration")
+                        with open(join(dir, "../assets/report_tooth_discoloration.pdf"), mode="rb") as d_file:
+                            st.download_button(
+                                label="Download Tooth Discoloration Report PDF",
+                                data=d_file,
+                                file_name="report_tooth_discoloration.pdf",
+                                mime="application/pdf",
+                            )
                         with open(join(dir, "../assets/tooth_discoloration.md"), mode="r") as docs:
                             st.markdown(docs.read())
                 if tags == []:
