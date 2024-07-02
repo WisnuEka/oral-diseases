@@ -164,3 +164,5 @@ requirements-dev.lock
 requirements.lock
 
 pyproject.toml
+
+.streamlit/secrets.toml
