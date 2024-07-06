@@ -8,7 +8,17 @@ from azure.core.exceptions import HttpResponseError
 credential = TranslatorCredential(st.secrets.azure.TRANSLATOR_KEY, st.secrets.azure.REGION)
 text_translator = TextTranslationClient(endpoint=st.secrets.azure.TRANSLATOR_ENDPOINT, credential=credential)
 
-st.title("Tanya Orally")
+# Title
+st.markdown(
+    """
+    <p style='text-align: center; font-size: 2.5rem'>
+    <strong>
+    Ask Orally
+    </strong>
+    </p>
+    """,
+    unsafe_allow_html=True,
+)
 
 # Initialize the message list
 if "message" not in st.session_state:
@@ -22,11 +32,7 @@ for message in st.session_state.message:
 
 def translate(text, from_param, to):
     try:
-        result = text_translator.translate(
-            content=[InputTextItem(text=text)],
-            to=[to],
-            from_parameter=from_param
-        )
+        result = text_translator.translate(content=[InputTextItem(text=text)], to=[to], from_parameter=from_param)
         translation = result[0] if result else None
         if translation:
             return translation.translations[0].text
@@ -46,10 +52,7 @@ if prompt := st.chat_input("Apakah ada yang bisa saya bantu?"):
     response = requests.post(
         st.secrets.azure.LANGUAGE_ENDPOINT,
         headers={"Ocp-Apim-Subscription-Key": st.secrets.azure.LANGUAGE_KEY},
-        json={"question": prompt,
-              "top": 1,
-              "includeUnstructuredSources": True,
-              "confidenceScoreThreshold": 0.5},
+        json={"question": prompt, "top": 1, "includeUnstructuredSources": True, "confidenceScoreThreshold": 0.5},
     )
 
     if response.ok:
