@@ -60,13 +60,13 @@ def expand_exif(data):
     return result
 
 
-st.set_page_config(page_title="Upload Batch", page_icon="😊")
+st.set_page_config(page_title="Multi-file Processing", page_icon="😊")
 
 st.markdown(
     """
     <p style='text-align: center; font-size: 2.5rem;'>
     <strong>
-    UPLOAD BATCH
+    MULTI-FILE PROCESSING
     </strong>
     </p>
     """,

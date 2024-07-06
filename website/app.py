@@ -9,7 +9,7 @@ pg = st.navigation({
         st.Page("site/02-Upload_Photo.py", icon=":material/upload_file:"),
         st.Page("site/03-Ask_Orally.py", icon=":material/robot_2:"),
         st.Page("site/04-Nearby_Hospital.py", icon=":material/location_on:"),
-        st.Page("site/05-Upload_Batch.py", icon=":material/batch_prediction:"),
+        st.Page("site/05-Multi-file_Processing.py", icon=":material/batch_prediction:"),
     ],
     "Information": [
         st.Page("site/06-Infographic.py", icon=":material/lightbulb:"),
