@@ -2,7 +2,6 @@ import streamlit as st
 from os import path
 
 dir = path.dirname(path.abspath(__file__))
-image_path = path.join(dir, "../assets/profile2.jpeg")
 
 
 def show_member(member: dict):

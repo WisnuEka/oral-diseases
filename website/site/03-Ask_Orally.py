@@ -8,6 +8,8 @@ from azure.core.exceptions import HttpResponseError
 credential = TranslatorCredential(st.secrets.azure.TRANSLATOR_KEY, st.secrets.azure.REGION)
 text_translator = TextTranslationClient(endpoint=st.secrets.azure.TRANSLATOR_ENDPOINT, credential=credential)
 
+st.set_page_config(page_title="Ask Orally", page_icon="😊")
+
 # Title
 st.markdown(
     """
