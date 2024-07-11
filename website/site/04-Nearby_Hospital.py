@@ -2,7 +2,7 @@ import streamlit as st
 from streamlit.components.v1 import iframe
 
 
-st.set_page_config(page_title="Information", page_icon="😊", layout="wide")
+st.set_page_config(page_title="Information", page_icon="😊", layout="wide", initial_sidebar_state="collapsed")
 
 # Title
 st.markdown(

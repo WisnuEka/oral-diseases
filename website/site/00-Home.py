@@ -31,16 +31,16 @@ second = st.columns(3, gap="medium", vertical_alignment="center")
 
 with first[0]:
     st.image(path.join(script_dir, "../assets/f_bolt.png"))
-    st.text("➜ INSTANT")
+    st.text("➜ INSTANT ANALYSIS")
 with first[1]:
     st.image(path.join(script_dir, "../assets/f_money.png"))
-    st.text("➜ FREE")
+    st.text("➜ MULTI-FILE PROCESSING")
 with first[2]:
     st.image(path.join(script_dir, "../assets/f_time.png"))
-    st.text("➜ 24/7 ACCESS")
+    st.text("➜ ASK ORALLY")
 with second[0]:
     st.image(path.join(script_dir, "../assets/f_target.png"))
-    st.text("➜ ACCURATE")
+    st.text("➜ NEARBY HOSPITAL")
 with second[1]:
     st.image(path.join(script_dir, "../assets/f_privacy.png"))
     st.text("➜ PRIVACY-FIRST")
