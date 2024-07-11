@@ -248,3 +248,10 @@ if st.button("Submit", type="primary"):
                             st.markdown(docs.read())
                 if tags == []:
                     st.success("Selamat Gigi Anda Sehat", icon=":material/sentiment_very_satisfied:")
+
+                with st.container(border=True):
+                    st.page_link(
+                        "site/03-Ask_Orally.py",
+                        label=":blue-background[ASK ORALLY]",
+                        icon=":material/chevron_right:",
+                    )
