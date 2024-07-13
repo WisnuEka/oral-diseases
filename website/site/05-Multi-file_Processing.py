@@ -156,8 +156,12 @@ if st.button("Submit", type="primary"):
                         pass
 
                 with st.expander(f"Hasil Analisis: {im.name}", expanded=False):
-                    st.write(tags)
+                    st.text("Gambar Deteksi")
                     st.image(image_file, use_column_width=True)
+                    st.text("Hasil Deteksi")
+                    st.write(tags)
+                    st.text("JSON Respon")
+                    st.write(find)
                 # st.markdown("")
                 # if report_mode in ["Normal", "Only Annotation", "Raw Data", "All"]:
                 #     with st.expander("Legend", icon=":material/format_list_bulleted:", expanded=True):
