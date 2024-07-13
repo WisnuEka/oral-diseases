@@ -16,4 +16,4 @@ st.set_page_config(page_title="Information", page_icon="😊", layout="wide", in
 #     unsafe_allow_html=True,
 # )
 
-iframe("https://gunungpw.github.io/nearby-map/", height=600)
+iframe("https://gunungpw.github.io/nearby-map/", height=550)

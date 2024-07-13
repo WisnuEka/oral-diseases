@@ -14,7 +14,7 @@ st.markdown(
     <p style='text-align: center; font-size: 1.1rem;'>
     <strong>Senyummu</strong> adalah aplikasi yang digunakan
     untuk mendeteksi penyakit dan kerusakan gigi melalui analisis foto gigi. Aplikasi
-    ini memberikan diagnosis akurat dan rekomendasi perawatan yang tepat, membantu pengguna
+    ini memberikan analisis akurat dan rekomendasi perawatan yang tepat, membantu pengguna
     menjaga kesehatan gigi dengan lebih mudah dan efektif.
     </p>
     """,
