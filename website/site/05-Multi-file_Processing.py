@@ -156,10 +156,13 @@ if st.button("Submit", type="primary"):
                         pass
 
                 with st.expander(f"Hasil Analisis: {im.name}", expanded=False):
+                    st.markdown("")
                     st.text("Gambar Deteksi")
                     st.image(image_file, use_column_width=True)
+                    st.divider()
                     st.text("Hasil Deteksi")
                     st.write(tags)
+                    st.divider()
                     st.text("JSON Respon")
                     st.write(find)
                 # st.markdown("")
